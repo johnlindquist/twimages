@@ -67,8 +67,6 @@ const go = async function(id) {
 const send = require("send")
 const query = require("micro-query")
 
-const { send: s } = require("micro")
-
 module.exports = async (req, res) => {
   const { id } = query(req)
   if (!id) return "I need an id!"
@@ -79,57 +77,3 @@ module.exports = async (req, res) => {
     path.join(__dirname, `${id}.zip`)
   ).pipe(res)
 }
-
-// const memory = require("feathers-memory")
-// const feathers = require("@feathersjs/feathers")
-// const express = require("@feathersjs/express")
-// const socketio = require("@feathersjs/socketio")
-
-// // Create an Express compatible Feathers application instance.
-// const app = express(feathers())
-// // Turn on JSON parser for REST services
-// app.use(express.json())
-// // Turn on URL-encoded parser for REST services
-// app.use(express.urlencoded({ extended: true }))
-// // Enable REST services
-// app.configure(express.rest())
-// // Enable REST services
-// app.configure(socketio())
-// // Create an in-memory Feathers service with a default page size of 2 items
-// // and a maximum size of 4
-// app.use(
-//   "/messages",
-//   memory({
-//     paginate: {
-//       default: 20,
-//       max: 40
-//     }
-//   })
-// )
-// // Set up default error handler
-// app.use(express.errorHandler())
-
-// // Create a dummy Message
-// app
-//   .service("messages")
-//   .create({
-//     text: "Message created on server"
-//   })
-//   .then(message =>
-//     console.log("Created message", message)
-//   )
-
-// setInterval(() => {
-//   app.service("messages").create({
-//     text: new Date().toString()
-//   })
-// }, 2000)
-
-// // Start the server.
-// const port = 3000
-
-// app.listen(port, () => {
-//   console.log(
-//     `Feathers server listening on port ${port}`
-//   )
-// })
